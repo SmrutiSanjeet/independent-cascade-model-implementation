@@ -1,0 +1,18 @@
+import networkx as nx
+import matplotlib.pyplot as plt
+
+G = nx.watts_strogatz_graph(10, 4, 0.5)
+pos = nx.circular_layout(G)
+ 
+plt.figure(figsize = (12, 12))
+nx.draw_networkx(G, pos)
+
+def propagate_nx(g,p,new_active):
+    
+    targets = []
+    for node in new_active:
+        targets += g.neighbors(node)
+
+    return(targets)
+    
+propagate_nx(G,0.1,[8,1])
